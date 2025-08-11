@@ -1,15 +1,20 @@
-import React, { useContext } from "react"; // add useContext import
+import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import { Toaster } from "react-hot-toast";
-import { AuthContext } from "../context/AuthContext"; // fix casing here
+import { AuthContext } from "../context/AuthContext";
+import assets from "./assets/assets";
 
 const App = () => {
   const { authUser } = useContext(AuthContext);
+
   return (
-    <div className="bg-[url('./src/assets/bgImage.svg')] bg-contain">
+    <div
+      style={{ backgroundImage: `url(${assets.bgImage})` }}
+      className="bg-contain bg-no-repeat min-h-screen"
+    >
       <Toaster />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="login" />} />
